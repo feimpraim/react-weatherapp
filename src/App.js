@@ -1,17 +1,21 @@
 import React, { useState } from "react";
 
 const api = {
-  key: "f13669f3aa86ac327686ce8c2f1ec22d",
+  key: "",
   base: "https://api.openweathermap.org/data/2.5/",
 };
 
 function App() {
+  console.log(process.env.REACT_APP_NAME);
+
   const [query, setQuery] = useState("");
   const [weather, setWeather] = useState({});
 
   const search = (evt) => {
     if (evt.key === "Enter") {
-      fetch(`${api.base}weather?q=${query}&units=metric&APPID=${api.key}`)
+      fetch(
+        `${api.base}weather?q=${query}&units=imperial&APPID=${process.env.REACT_APP_NAME}`
+      )
         .then((res) => res.json())
         .then((result) => {
           setQuery("");
@@ -58,7 +62,7 @@ function App() {
     <div
       className={
         typeof weather.main != "undefined"
-          ? weather.main.temp > 16
+          ? weather.main.temp > 60
             ? "app warm"
             : "app"
           : "app"
