@@ -6,8 +6,6 @@ const api = {
 };
 
 function App() {
-  console.log(process.env.REACT_APP_NAME);
-
   const [query, setQuery] = useState("");
   const [weather, setWeather] = useState({});
 
